@@ -1,5 +1,4 @@
 import streamlit as st
-import cv2
 import pytesseract
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -10,10 +9,7 @@ pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 FONT_PATH = "DejaVuSansMono.ttf"
 
 def extract_text(img):
-    img = np.array(img)
-    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
-    return pytesseract.image_to_string(thresh)
+    return pytesseract.image_to_string(img)
 
 def parse(text):
     data = {"items": []}
